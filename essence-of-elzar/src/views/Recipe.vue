@@ -14,6 +14,8 @@
       </ul>
 
       <a v-bind:href="recipe.sourceUrl" target="_blank">Källa</a>
+
+      <button @click="deleteRecipe(recipe.id)">Radera</button>
     </div>
 </template>
 
@@ -37,5 +39,14 @@ export default class Recipe extends Vue {
       this.recipe = response.data;
     });
   }
+
+  private deleteRecipe(id: number) {
+    axios
+    .delete('http://localhost:5000/api/recipes/' + id )
+    .then((response: AxiosResponse) => {
+      this.$router.push('/');
+    });
+  }
+
 }
 </script>
