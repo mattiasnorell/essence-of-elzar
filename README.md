@@ -1,2 +1,2 @@
-# essence-of-elzar
+# Essence of Elzar
 Frontend for Elzar
