@@ -1,13 +1,29 @@
 <template>
-    <div>
-      <h2>{{ recipe.title }}</h2>
-      <img v-bind:src="recipe.image"/>
-     </div>
+   <router-link :to="{ name: 'recipe', params: { id: recipe.id }}">
+    <md-card>
+      <md-card-media-cover md-solid>
+        <md-card-media md-ratio="1:1">
+          <img v-bind:src="recipe.image"/>
+        </md-card-media>
+
+        <md-card-area>
+          <md-card-header>
+            <span class="md-title">{{ recipe.title }}</span>
+            <span class="md-subhead"></span>
+          </md-card-header>
+
+        </md-card-area>
+      </md-card-media-cover>
+     </md-card>
+  </router-link>
  </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { RecipeModel } from '../models/RecipeModel';
+import { MdCard } from 'vue-material/dist/components';
+
+Vue.use(MdCard);
 
 @Component
 export default class RecipeListItem extends Vue {
@@ -17,18 +33,5 @@ export default class RecipeListItem extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>

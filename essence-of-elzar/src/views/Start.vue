@@ -2,7 +2,13 @@
     <div>
       <AddRecipe />
       <SearchBar />
-       <RecipeListItem v-bind:recipe="recipe" v-bind:key="recipe.id" v-for="recipe in recipes" />
+
+      <div class="md-layout md-gutter">
+        <div class="md-layout-item md-large-size-20 md-medium-size-33 md-small-size-50 md-xsmall-size-100" :key="recipe.id" v-for="recipe in recipes" >
+              <RecipeListItem :recipe="recipe" />
+        </div>
+      </div>
+  
     </div>
 </template>
 
@@ -13,6 +19,11 @@ import RecipeListItem from '@/components/RecipeListItem.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import { RecipeModel } from '../models/RecipeModel';
 import axios, { AxiosResponse, AxiosAdapter, AxiosInstance } from 'axios';
+
+import { MdLayout, MdContent } from 'vue-material/dist/components';
+
+Vue.use(MdLayout);
+Vue.use(MdContent);
 
 @Component({
   components: {
@@ -33,3 +44,9 @@ export default class Start extends Vue {
 
 }
 </script>
+
+<style scoped>
+.md-layout-item{
+  padding-bottom: 20px;
+}
+</style>

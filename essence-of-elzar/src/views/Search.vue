@@ -1,7 +1,12 @@
 <template>
     <div>
       <SearchBar @search="searchHandler($event)" />
-      <RecipeListItem v-bind:recipe="recipe" v-bind:key="recipe.id" v-for="recipe in recipes" />
+      
+      <div class="md-layout md-gutter">
+        <div class="md-layout-item md-large-size-20 md-medium-size-33 md-small-size-50 md-xsmall-size-100" :key="recipe.id" v-for="recipe in recipes" >
+              <RecipeListItem :recipe="recipe" />
+        </div>
+      </div>
     </div>
 </template>
 
@@ -45,3 +50,8 @@ export default class Search extends Vue {
   }
 }
 </script>
+<style scoped>
+.md-layout-item{
+  padding-bottom: 20px;
+}
+</style>
