@@ -1,6 +1,5 @@
 <template>
     <div>
-           
       <div class="md-layout md-gutter">
         <div class="md-layout-item md-large-size-20 md-medium-size-33 md-small-size-50 md-xsmall-size-100" :key="recipe.id" v-for="recipe in recipes" >
               <RecipeListItem :recipe="recipe" />
@@ -10,11 +9,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import RecipeListItem from '@/components/RecipeListItem.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import { RecipeModel } from '../models/RecipeModel';
-import axios, { AxiosResponse, AxiosAdapter, AxiosInstance } from 'axios';
+import HttpHandler from '../HttpHandler';
+import HttpHandlerResponse from '../HttpHandlerResponse';
+
 
 @Component({
   components: {
@@ -23,28 +24,31 @@ import axios, { AxiosResponse, AxiosAdapter, AxiosInstance } from 'axios';
   },
 })
 export default class Search extends Vue {
-  @Prop() private query!: string;
 
+  @Prop() private query!: string;
   private searchQuery: string = this.query;
   private recipes: RecipeModel[] = new Array<RecipeModel>();
-
-  public mounted(): void {
-    this.search();
-  }
+  private httpHandler: HttpHandler = new HttpHandler();
 
   private searchHandler(event: string) {
-    this.searchQuery = event;
-    this.search();
+    this.search(event);
   }
 
-  private search() {
-    if (!this.searchQuery) {
+  @Watch('$route.query.q', { immediate: true, deep: true })
+  private onUrlChange(newVal: any) {
+    this.search(newVal);
+  }
+
+  private search(query: string) {
+    if (!query) {
       return;
     }
 
-    const data = {tags: this.searchQuery.split(' ')};
-    axios.post('http://elzar.local/api/search/', data).then((response: AxiosResponse) => {
-      this.recipes = response.data;
+    const data = {tags: query.split(' ')};
+    this.httpHandler.post('/search', data).then((response: HttpHandlerResponse) => {
+      if (response.isSuccess) {
+        this.recipes = response.data;
+      }
     });
   }
 }

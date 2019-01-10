@@ -17,12 +17,12 @@ import AddRecipe from '@/components/AddRecipe.vue';
 import RecipeListItem from '@/components/RecipeListItem.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import { RecipeModel } from '../models/RecipeModel';
-import axios, { AxiosResponse, AxiosAdapter, AxiosInstance } from 'axios';
+import HttpHandler from '../HttpHandler';
+import HttpHandlerResponse from '../HttpHandlerResponse';
 
 import { MdLayout, MdContent } from 'vue-material/dist/components';
 
-Vue.use(MdLayout);
-Vue.use(MdContent);
+Vue.use(MdLayout, MdContent);
 
 @Component({
   components: {
@@ -34,9 +34,10 @@ Vue.use(MdContent);
 export default class Start extends Vue {
 
   private recipes: RecipeModel[] = new Array<RecipeModel>();
+  private httpHandler = new HttpHandler();
 
   public mounted(): void {
-    axios.get('http://elzar.local/api/recipes/').then((response: AxiosResponse) => {
+    this.httpHandler.get('/recipes').then((response: HttpHandlerResponse) => {
       this.recipes = response.data;
     });
   }

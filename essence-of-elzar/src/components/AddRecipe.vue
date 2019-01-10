@@ -7,20 +7,22 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import axios, { AxiosResponse, AxiosAdapter, AxiosInstance } from 'axios';
+import HttpHandler from '../HttpHandler';
+import HttpHandlerResponse from '../HttpHandlerResponse';
 
 @Component
 export default class AddRecipe extends Vue {
 
   private url: string = '';
+  private httpHandler: HttpHandler = new HttpHandler();
 
   private submit() {
     if (this.url.length < 5) {
       return;
     }
 
-    axios.post('http://elzar.local/api/recipes/', { url: this.url }).then((response: AxiosResponse) => {
-      if (response.status !== 200) {
+    this.httpHandler.post('/recipes', { url: this.url }).then((response: HttpHandlerResponse) => {
+      if (!response.isSuccess) {
         return;
       }
 

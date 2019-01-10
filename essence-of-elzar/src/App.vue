@@ -3,7 +3,6 @@
     <div class="page-container">
 
      
-      
       <md-app md-waterfall md-mode="overlap">
       <md-app-toolbar class="md-primary md-large">
         <div class="md-toolbar-row">
@@ -11,15 +10,14 @@
             <md-icon>menu</md-icon>
           </md-button>
 
-          <span class="md-title">Essence of Elzar</span>
-
            <SearchBar />
+
         </div>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">
         <md-toolbar class="md-transparent" md-elevation="0">
-          Navigation
+          Essence of Elzar
         </md-toolbar>
 
         <md-list>
@@ -86,4 +84,5 @@ export default {
     width: 230px;
     max-width: calc(100vw - 125px);
   }
+
 </style>

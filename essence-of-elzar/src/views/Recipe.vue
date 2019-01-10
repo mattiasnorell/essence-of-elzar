@@ -57,7 +57,8 @@ import { Component, Vue } from 'vue-property-decorator';
 import { RecipeModel } from '../models/RecipeModel';
 import { MdChips } from 'vue-material/dist/components';
 
-import axios, { AxiosResponse, AxiosAdapter, AxiosInstance } from 'axios';
+import HttpHandler from '../HttpHandler';
+import HttpHandlerResponse from '../HttpHandlerResponse';
 
 Vue.use(MdChips);
 
@@ -68,20 +69,25 @@ Vue.use(MdChips);
 export default class Recipe extends Vue {
 
   private recipe: RecipeModel | null = null;
+  private httpHandler: HttpHandler = new HttpHandler();
 
   public mounted(): void {
-    axios
-    .get('http://elzar.local/api/recipes/' + this.$router.currentRoute.params.id )
-    .then((response: AxiosResponse) => {
-      this.recipe = response.data;
+    this.httpHandler
+    .get('/recipes' + this.$router.currentRoute.params.id )
+    .then((response: HttpHandlerResponse) => {
+      if (response.isSuccess) {
+        this.recipe = response.data;
+      }
     });
   }
 
   private deleteRecipe(id: number) {
-    axios
-    .delete('http://elzar.local/api/recipes/' + id )
-    .then((response: AxiosResponse) => {
-      this.$router.push('/');
+    this.httpHandler
+    .delete('/recipes' + id )
+    .then((response: HttpHandlerResponse) => {
+      if (response.isSuccess) {
+        this.$router.push('/');
+      }
     });
   }
 
