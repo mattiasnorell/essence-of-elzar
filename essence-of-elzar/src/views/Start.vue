@@ -45,8 +45,6 @@ export default class Start extends Vue {
 }
 </script>
 
-<style scoped>
-.md-layout-item{
-  padding-bottom: 20px;
-}
+<style lang="sass" rel='stylesheet/scss' scoped>
+  @import '../style/v-start.scss';
 </style>

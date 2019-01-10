@@ -53,8 +53,7 @@ export default class Search extends Vue {
   }
 }
 </script>
-<style scoped>
-.md-layout-item{
-  padding-bottom: 20px;
-}
+
+<style lang="sass" rel='stylesheet/scss' scoped>
+  @import '../style/v-search.scss';
 </style>

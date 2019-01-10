@@ -32,10 +32,8 @@ export default class AddRecipe extends Vue {
 }
 </script>
 
-<style scoped>
-
+<style lang="sass" rel='stylesheet/scss' scoped>
+  @import '../style/c-addrecipe.scss';
 </style>
-
-
 
 

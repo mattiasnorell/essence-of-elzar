@@ -9,8 +9,16 @@
             </md-button>
 
             <SearchBar />
+        
+            <div class="md-toolbar-section-end">
+              <md-button class="md-icon-button">
+                <md-icon>info</md-icon>
+              </md-button>
 
+            </div>
           </div>
+
+
         </md-app-toolbar>
 
         <md-app-drawer :md-active.sync="menuVisible">
@@ -58,8 +66,5 @@ export default {
 </script>
 
 <style lang="sass" rel='stylesheet/scss' scoped>
-#nav{padding: 30px;text-align: center;a{font-weight: bold;color: #2c3e50;&.router-link-exact-active {color: #42b983;}}}
-.md-app{max-height: 100vh;min-height: 100vh;border: 1px solid rgba(#000, .12);}
-.md-drawer{width: 220px;max-width: calc(100vw - 125px);}
-.md-app.md-overlap .md-app-content { margin: -64px 24px 64px;overflow:visible;}
+  @import 'style/app.scss';
 </style>

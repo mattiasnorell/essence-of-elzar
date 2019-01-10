@@ -95,7 +95,5 @@ export default class Recipe extends Vue {
 </script>
 
 <style lang="sass" rel='stylesheet/scss' scoped>
-.ingredient-list{width: 350px;}
-.list-style-none{list-style: none;padding: 0;}
-.md-chip{background-color: #ccc;}
+  @import '../style/v-recipe.scss';
 </style>

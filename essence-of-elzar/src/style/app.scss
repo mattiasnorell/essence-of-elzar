@@ -1,0 +1,30 @@
+#nav{
+    padding: 30px;
+    text-align: center;
+    
+    a{
+        font-weight: bold;
+        color: #2c3e50;
+        &.router-link-exact-active {
+            color: #42b983;
+        }
+    }
+}
+
+.md-app{
+    max-height: 100vh;
+    min-height: 100vh;
+    border: 1px solid rgba(#000, .12);
+
+    .md-overlap {
+        .md-app-content { 
+            margin: -64px 24px 64px;
+            overflow:visible;
+        }
+    }
+}
+
+.md-drawer{
+    width: 220px;
+    max-width: calc(100vw - 125px);
+}

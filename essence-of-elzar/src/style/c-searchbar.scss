@@ -1,0 +1,27 @@
+.md-field {
+    background-color: hsla(0,0%,100%,.12);
+    background-color: var(--md-theme-demo-light-background,hsla(0,0%,100%,.12));
+    width: 100%;
+    min-height: 48px;
+    margin: 35px 0 24px;
+    padding-top: 0 !important;
+    display: flex;
+    position: relative;
+    font-family: inherit;
+
+    .md-input{
+        color: white;
+
+        &.search{
+            min-height: 48px;
+            height: 48px;
+            margin: 0;
+            box-shadow: none;
+            padding: 10px;
+        }
+    }
+
+    .md-input::placeholder{   
+        color: white;
+    }
+}
