@@ -19,7 +19,7 @@ export default class AddRecipe extends Vue {
       return;
     }
 
-    axios.post('http://localhost:5000/api/recipes/', { url: this.url }).then((response: AxiosResponse) => {
+    axios.post('http://elzar.local/api/recipes/', { url: this.url }).then((response: AxiosResponse) => {
       if (response.status !== 200) {
         return;
       }
@@ -33,3 +33,7 @@ export default class AddRecipe extends Vue {
 <style scoped>
 
 </style>
+
+
+
+

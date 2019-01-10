@@ -1,7 +1,6 @@
 <template>
     <div>
-      <SearchBar @search="searchHandler($event)" />
-      
+           
       <div class="md-layout md-gutter">
         <div class="md-layout-item md-large-size-20 md-medium-size-33 md-small-size-50 md-xsmall-size-100" :key="recipe.id" v-for="recipe in recipes" >
               <RecipeListItem :recipe="recipe" />
@@ -44,7 +43,7 @@ export default class Search extends Vue {
     }
 
     const data = {tags: this.searchQuery.split(' ')};
-    axios.post('http://localhost:5000/api/search/', data).then((response: AxiosResponse) => {
+    axios.post('http://elzar.local/api/search/', data).then((response: AxiosResponse) => {
       this.recipes = response.data;
     });
   }

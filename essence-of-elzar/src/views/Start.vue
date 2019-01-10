@@ -1,8 +1,7 @@
 <template>
     <div>
       <AddRecipe />
-      <SearchBar />
-
+      
       <div class="md-layout md-gutter">
         <div class="md-layout-item md-large-size-20 md-medium-size-33 md-small-size-50 md-xsmall-size-100" :key="recipe.id" v-for="recipe in recipes" >
               <RecipeListItem :recipe="recipe" />
@@ -37,7 +36,7 @@ export default class Start extends Vue {
   private recipes: RecipeModel[] = new Array<RecipeModel>();
 
   public mounted(): void {
-    axios.get('http://localhost:5000/api/recipes/').then((response: AxiosResponse) => {
+    axios.get('http://elzar.local/api/recipes/').then((response: AxiosResponse) => {
       this.recipes = response.data;
     });
   }

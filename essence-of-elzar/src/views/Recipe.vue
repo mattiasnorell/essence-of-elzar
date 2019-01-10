@@ -36,8 +36,7 @@
       <md-card-area md-inset>
         <md-card-content>
           <ol>
-            <li :key="`step-${index}`" v-for="(step, index) in recipe.cookingProcedureSteps">
-              {{ step }} </li>
+            <li :key="`step-${index}`" v-for="(step, index) in recipe.cookingProcedureSteps" v-html="step"></li>
           </ol>
         </md-card-content>
       </md-card-area>
@@ -72,7 +71,7 @@ export default class Recipe extends Vue {
 
   public mounted(): void {
     axios
-    .get('http://localhost:5000/api/recipes/' + this.$router.currentRoute.params.id )
+    .get('http://elzar.local/api/recipes/' + this.$router.currentRoute.params.id )
     .then((response: AxiosResponse) => {
       this.recipe = response.data;
     });
@@ -80,7 +79,7 @@ export default class Recipe extends Vue {
 
   private deleteRecipe(id: number) {
     axios
-    .delete('http://localhost:5000/api/recipes/' + id )
+    .delete('http://elzar.local/api/recipes/' + id )
     .then((response: AxiosResponse) => {
       this.$router.push('/');
     });
