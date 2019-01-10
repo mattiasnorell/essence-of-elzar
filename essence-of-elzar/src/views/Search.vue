@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div class="md-layout md-gutter">
+      <div class="md-layout">
         <div class="md-layout-item md-large-size-20 md-medium-size-33 md-small-size-50 md-xsmall-size-100" :key="recipe.id" v-for="recipe in recipes" >
               <RecipeListItem :recipe="recipe" />
         </div>

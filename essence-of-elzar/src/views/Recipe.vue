@@ -73,7 +73,7 @@ export default class Recipe extends Vue {
 
   public mounted(): void {
     this.httpHandler
-    .get('/recipes' + this.$router.currentRoute.params.id )
+    .get('/recipes/' + this.$router.currentRoute.params.id )
     .then((response: HttpHandlerResponse) => {
       if (response.isSuccess) {
         this.recipe = response.data;
@@ -94,16 +94,8 @@ export default class Recipe extends Vue {
 }
 </script>
 
-<style scoped>
-.ingredient-list{
-  width: 350px;
-}
-.list-style-none{
-  list-style: none;
-  padding: 0;
-}
-
-.md-chip{
-      background-color: #ccc;
-}
+<style lang="sass" rel='stylesheet/scss' scoped>
+.ingredient-list{width: 350px;}
+.list-style-none{list-style: none;padding: 0;}
+.md-chip{background-color: #ccc;}
 </style>
